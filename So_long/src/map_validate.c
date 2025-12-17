@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validate.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomamart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 16:06:05 by tomamart          #+#    #+#             */
+/*   Updated: 2025/11/26 16:06:07 by tomamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	is_rectangular(t_map *map)
@@ -32,7 +44,6 @@ int	is_surrounded_by_walls(t_map *map)
 			{
 				if (map->grid[y][x] != '1')
 				{
-					// DEBUG opcional: puedes comentar estas líneas en versión final
 					ft_printf("Borde roto en (%d,%d): '%c' (esperaba '1')\n",
 						x, y, map->grid[y][x]);
 					return (0);

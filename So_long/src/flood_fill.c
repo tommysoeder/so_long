@@ -1,41 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomamart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 16:05:04 by tomamart          #+#    #+#             */
+/*   Updated: 2025/11/26 16:05:05 by tomamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-
-static char	**dup_grid(t_map *map)
-{
-	char	**copy;
-	int		i;
-
-	copy = (char **)ft_calloc(map->height + 1, sizeof(char *));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < map->height)
-	{
-		copy[i] = ft_strdup(map->grid[i]);
-		if (!copy[i])
-		{
-			while (--i >= 0)
-				free(copy[i]);
-			free(copy);
-			return (NULL);
-		}
-		i++;
-	}
-	return (copy);
-}
-
-static void	free_grid_copy(char **grid, int height)
-{
-	int	i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(grid[i]);
-		i++;
-	}
-	free(grid);
-}
 
 static void	flood(char **grid, int x, int y, t_map *map)
 {
@@ -50,20 +25,13 @@ static void	flood(char **grid, int x, int y, t_map *map)
 	flood(grid, x, y - 1, map);
 }
 
-void	check_path(t_game *game)
+static void	count_reachable(t_game *game, char **copy, int *c_seen, int *e_seen)
 {
-	char	**copy;
-	int		x;
-	int		y;
-	int		collect_seen;
-	int		exit_seen;
+	int	x;
+	int	y;
 
-	copy = dup_grid(&game->map);
-	if (!copy)
-		error_exit(game, "Error de memoria al duplicar mapa");
-	flood(copy, game->map.player_x, game->map.player_y, &game->map);
-	collect_seen = 0;
-	exit_seen = 0;
+	*c_seen = 0;
+	*e_seen = 0;
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -71,14 +39,27 @@ void	check_path(t_game *game)
 		while (x < game->map.width)
 		{
 			if (game->map.grid[y][x] == 'C' && copy[y][x] == 'F')
-				collect_seen++;
+				(*c_seen)++;
 			if (game->map.grid[y][x] == 'E' && copy[y][x] == 'F')
-				exit_seen = 1;
+				*e_seen = 1;
 			x++;
 		}
 		y++;
 	}
-	free_grid_copy(copy, game->map.height);
+}
+
+void	check_path(t_game *game)
+{
+	char	**copy;
+	int		collect_seen;
+	int		exit_seen;
+
+	copy = dup_grid(&game->map);
+	if (!copy)
+		error_exit(game, "Error de memoria al duplicar mapa");
+	flood(copy, game->map.player_x, game->map.player_y, &game->map);
+	count_reachable(game, copy, &collect_seen, &exit_seen);
+	free_grid(copy, game->map.height);
 	if (collect_seen != game->map.collect_count || !exit_seen)
 		error_exit(game, "No hay un camino válido para todos los C y E");
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomamart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/26 16:03:04 by tomamart          #+#    #+#             */
+/*   Updated: 2025/11/26 16:03:06 by tomamart         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -14,7 +26,7 @@
 # define KEY_S      115
 # define KEY_D      100
 
-# define TILE_SIZE  32
+# define TILE_SIZE  96
 
 # define WALL_TX    "textures/wall.xpm"
 # define FLOOR_TX   "textures/floor.xpm"
@@ -68,6 +80,10 @@ void	error_exit(t_game *game, const char *msg);
 void	free_map(t_map *map);
 void	free_game(t_game *game);
 void    sanitize_map_lines(t_map *map);
+char	**dup_grid(t_map *map);
+void	free_grid(char **grid, int height);
+void	fill_image_solid(t_game *game, void *img, int color);
+void	load_texture_or_die(t_game *game, void **dst, const char *path);
 
 
 #endif
