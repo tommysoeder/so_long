@@ -6,15 +6,16 @@
 /*   By: tomamart <tomamart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 12:32:42 by tomamart          #+#    #+#             */
-/*   Updated: 2025/05/23 12:32:43 by tomamart         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:15:39 by tomamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
+#include "ft_printf_internal.h"
 #include <stdarg.h>
 #include <unistd.h>
 
-int	ft_putnbr_count(int n)
+int	ft_putnbr_count(unsigned int n)
 {
 	int		count;
 	long	nb;

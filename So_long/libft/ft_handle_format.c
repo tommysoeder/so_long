@@ -6,13 +6,14 @@
 /*   By: tomamart <tomamart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 12:31:52 by tomamart          #+#    #+#             */
-/*   Updated: 2025/05/23 12:31:53 by tomamart         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:11:23 by tomamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
+//#include "ft_printf.h"
 
 int	ft_handle_format(char specifier, va_list args)
 {

@@ -16,7 +16,8 @@ MLX_FLAGS   = -lXext -lX11 -lm
 INCLUDES    = -I$(INCDIR) -I$(LIBFTDIR) -I$(MLXDIR)
 
 SRC         = main.c init_game.c map_read.c map_validate.c map_utils.c \
-              flood_fill.c render.c hooks.c error_exit.c free.c grid_utils.c img_utils.c
+              flood_fill.c render.c hooks.c error_exit.c free.c grid_utils.c img_utils.c file_utils.c \
+			  map_validate_checks.c map_validate_content.c move.c
 
 SRCS        = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS        = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: tomamart <tomamart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:28:51 by tomamart          #+#    #+#             */
-/*   Updated: 2025/11/24 18:03:41 by tomamart         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:57:49 by tomamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <stddef.h>
+# include <stdarg.h>
+# include <unistd.h>
 
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
@@ -50,8 +52,20 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-char    *get_next_line(int fd);
-int ft_printf(const char *format, ...);
-
+int         ft_printf(const char *format, ...);
+int         ft_printf(const char *format, ...);
+int         ft_handle_string(va_list args);
+int         ft_handle_char(va_list args);
+int         ft_handle_integer(va_list args);
+int         ft_putnbr_count(unsigned int n);
+int         ft_handle_unsigned(va_list args);
+int         ft_putunbr_count(unsigned int n);
+int         ft_handle_hex_lower(va_list args);
+int         ft_puthex_base_count(unsigned int n, char *base);
+int         ft_handle_hex_upper(va_list args);
+int         ft_handle_pointer(va_list args);
+int         ft_puthex_ptr(unsigned long n);
+int         ft_handle_format(char specifier, va_list args);
+int         ft_handle_percent(void);
 
 #endif

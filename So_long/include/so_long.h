@@ -79,11 +79,18 @@ int		close_window(t_game *game);
 void	error_exit(t_game *game, const char *msg);
 void	free_map(t_map *map);
 void	free_game(t_game *game);
-void    sanitize_map_lines(t_map *map);
+void	sanitize_map_lines(t_map *map);
 char	**dup_grid(t_map *map);
 void	free_grid(char **grid, int height);
 void	fill_image_solid(t_game *game, void *img, int color);
 void	load_texture_or_die(t_game *game, void **dst, const char *path);
-
+void	map_check_shape(t_game *game);
+void	map_check_walls(t_game *game);
+void	map_check_content(t_game *game);
+void	map_check_shape(t_game *game);
+void	map_check_walls(t_game *game);
+void	map_check_content(t_game *game);
+void	move_player(t_game *game, int dx, int dy);
+char	*read_file_to_str(const char *filename);
 
 #endif

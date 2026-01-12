@@ -3,29 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   img_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomamart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tomamart <tomamart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 17:58:20 by tomamart          #+#    #+#             */
-/*   Updated: 2025/12/17 17:58:22 by tomamart         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:09:15 by tomamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	fill_image_solid(t_game *game, void *img, int color)
+static char	*get_img_data(t_game *game, void *img, int *line_len)
 {
 	char	*data;
 	int		bpp;
-	int		line_len;
 	int		endian;
-	int		x;
-	int		y;
 
-	data = mlx_get_data_addr(img, &bpp, &line_len, &endian);
+	data = mlx_get_data_addr(img, &bpp, line_len, &endian);
 	if (!data)
 		error_exit(game, "No se pudo obtener data_addr de imagen");
 	if (bpp != 32)
 		error_exit(game, "Formato de imagen no soportado");
+	return (data);
+}
+
+void	fill_image_solid(t_game *game, void *img, int color)
+{
+	char	*data;
+	int		line_len;
+	int		x;
+	int		y;
+
+	data = get_img_data(game, img, &line_len);
 	y = 0;
 	while (y < TILE_SIZE)
 	{

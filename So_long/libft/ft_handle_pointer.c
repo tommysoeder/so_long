@@ -6,17 +6,18 @@
 /*   By: tomamart <tomamart@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 12:32:53 by tomamart          #+#    #+#             */
-/*   Updated: 2025/05/23 14:26:47 by tomamart         ###   ########.fr       */
+/*   Updated: 2026/01/12 14:11:46 by tomamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include <unistd.h>
+#include "ft_printf_internal.h"
 
 int	ft_puthex_ptr(unsigned long n)
 {
-	int	count;
+	int		count;
 	char	*hex;
 
 	hex = "0123456789abcdef";
@@ -29,14 +30,15 @@ int	ft_puthex_ptr(unsigned long n)
 
 int	ft_handle_pointer(va_list args)
 {
-	void	*ptr;
+	void			*ptr;
 	unsigned long	addr;
-	int	count;
+	int				count;
 
-	count = 0;
-	ptr = va_arg(args, void *);
+	ptr = (void *)va_arg(args, void *);
+	if (!ptr)
+		return (write(1, "(nil)", 5));
 	addr = (unsigned long)ptr;
-	write(1, "0x", 2);
-	count += 2 + ft_puthex_ptr(addr);
+	count = write(1, "0x", 2);
+	count += ft_puthex_ptr(addr);
 	return (count);
 }

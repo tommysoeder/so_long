@@ -23,6 +23,7 @@ ft_memmove.c \
 ft_strlcat.c \
 ft_strncmp.c \
 ft_tolower.c \
+ft_calloc.c \
 ft_strdup.c \
 ft_substr.c \
 ft_strjoin.c \
@@ -35,10 +36,17 @@ ft_putchar_fd.c \
 ft_putstr_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
-get_next_line.c \
-get_next_line_utils.c \
 ft_printf.c \
-
+ft_handle_format.c \
+ft_handle_string.c \
+ft_handle_char.c \
+ft_handle_integer.c \
+ft_handle_unsigned.c \
+ft_handle_hex_lower.c \
+ft_handle_hex_upper.c \
+ft_hex_utils.c \
+ft_handle_pointer.c \
+ft_handle_percent.c \
 
 OBJ = $(SRC:.c=.o)
 RM = rm -f
